@@ -1,0 +1,18 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: USER-ZUUL
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: gateway-9527 #显示的名字而已
+    prefer-ip-address: true
+zuul:
+  routes:
+    ZhangZhen.serviceId: user-provider
+    ZhangZhen.path: /testUser/**  #/wbUser/**这个路径的访问都路由到serverId服务处理
+  ignored-services: user-provider  # 忽略这个服务，如果要忽略所有的服务， “*”
+  prefix: /aigou
